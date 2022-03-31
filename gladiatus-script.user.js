@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Gladiatus Script
+// @name         Gladiatus Botu
 // @version      2.41
 // @description  Dodatek do gry Gladiatus
-// @author       Eryk Bodziony
+// @author       Eryk Bodziony / Tr Editing Me
 // @match        *://*.gladiatus.gameforge.com/game/index.php*
 // @exclude      *://*.gladiatus.gameforge.com/game/index.php?mod=start
 // @downloadURL  https://github.com/ebodziony/gladiatus-script/raw/master/gladiatus-script.js
@@ -23,12 +23,12 @@
         const globalCSS = GM_getResourceText("customCSS_global");
         GM_addStyle(globalCSS);
     };
-    
+
     addCustomCSS();
 
     /*****************
     *     Global     *
-    *****************/  
+    *****************/
 
     let autoGoActive = sessionStorage.getItem('autoGoActive') === "true" ? true : false;
 
@@ -44,12 +44,12 @@
     *     Config     *
     *****************/
 
-    // Mode
+    // Mod
 
     let safeMode = false;
     let nextEncounterTime = Number(localStorage.getItem('nextEncounter'));
 
-    // Quests
+    // Gorevler
 
     let doQuests = true;
     if (localStorage.getItem('doQuests')) {
@@ -71,7 +71,7 @@
         nextQuestTime = Number(localStorage.getItem('nextQuestTime'));
     }
 
-    // Expedition
+    // Kesif seferi
 
     let doExpedition = true;
     if (localStorage.getItem('doExpedition')) {
@@ -82,8 +82,8 @@
         monsterId = Number(localStorage.getItem('monsterId'));
     };
 
-    // Dungeon
-    
+    // Zindan
+
     let doDungeon = true;
     if (localStorage.getItem('doDungeon')) {
         doDungeon = localStorage.getItem('doDungeon') === "true" ? true : false;
@@ -107,7 +107,7 @@
         arenaOpponentLevel = localStorage.getItem('arenaOpponentLevel');
     };
 
-    // Circus
+    // Sirk Turna
 
     let doCircus = true;
     if (localStorage.getItem('doCircus')){
@@ -121,7 +121,7 @@
         circusOpponentLevel = localStorage.getItem('circusOpponentLevel');
     };
 
-    // Event Expedition
+    // Etkinlik Kesfi
 
     let doEventExpedition = true;
     if (localStorage.getItem('doEventExpedition')) {
@@ -130,7 +130,7 @@
     if (!document.getElementById("submenu2").getElementsByClassName("menuitem glow")[0]){
         doEventExpedition = false;
     };
-    
+
     let eventMonsterId = 0;
     if (localStorage.getItem('eventMonsterId')) {
         eventMonsterId = Number(localStorage.getItem('eventMonsterId'));
@@ -151,59 +151,59 @@
     };
 
     /*****************
-    *  Translations  *
+    *  Çeviri  *
     *****************/
 
     const contentEN = {
         advanced: 'Advanced',
         arena: 'Arena',
-        circusTurma: 'Circus Turma',
-        difficulty: 'Difficulty',
-        dungeon: 'Dungeon',
-        eventExpedition: 'Event Expedition',
-        expedition: 'Expedition',
-        highest: 'Highest',
-        in: 'In',
-        lastUsed: "Last Used",
-        location: 'Location',
-        lowest: 'Lowest',
-        nextAction: 'Next action',
-        no: 'No',
+        circusTurma: 'Sik Turna',
+        difficulty: 'Zorluk',
+        dungeon: 'Zindan',
+        eventExpedition: 'Etkinlik Kesfi',
+        expedition: 'Kesif Seferi',
+        highest: 'En Yuksek',
+        in: 'Icinde',
+        lastUsed: "Son Kullanilan",
+        location: 'Lokasyon',
+        lowest: 'En Dusuk',
+        nextAction: 'Siradaki aksiyon',
+        no: 'Hayir',
         normal: 'Normal',
-        opponent: 'Opponent',
-        opponentLevel: 'Opponent Level',
-        quests: 'Quests',
-        random: 'Random',
-        settings: 'Settings',
-        soon: 'Soon...',
-        type: 'Type',
-        yes: 'Yes'
+        opponent: 'Dusman',
+        opponentLevel: 'Dusman Seviyesi',
+        quests: 'Gorev',
+        random: 'Rastgele',
+        settings: 'Ayarlar',
+        soon: 'Yakinda...',
+        type: 'Tip',
+        yes: 'Evet'
     }
-
-    const contentPL = {
-        advanced: 'Zaawansowane',
+   // Pl ceviri ama burayi tr gibi kullanicam
+    const contentTR = {
+        advanced: 'Advanced',
         arena: 'Arena',
-        circusTurma: 'Circus Turma',
-        difficulty: 'Trudność',
-        dungeon: 'Lochy',
-        eventExpedition: 'Wyprawa Eventowa',
-        expedition: 'Wyprawa',
-        highest: 'Najwyższy',
-        in: 'Za',
-        lastUsed: "Ostatnio Używana",
-        location: 'Lokacja',
-        lowest: 'Najniższy',
-        nextAction: 'Następna akcja',
-        no: 'Nie',
-        normal: 'Normalne',
-        opponent: 'Przeciwnik',
-        opponentLevel: 'Poziom Przeciwnika',
-        quests: 'Zadania',
-        random: 'Losowy',
-        settings: 'Ustawienia',
-        soon: 'Wkrótce...',
-        type: 'Rodzaj',
-        yes: 'Tak'
+        circusTurma: 'Sik Turna',
+        difficulty: 'Zorluk',
+        dungeon: 'Zindan',
+        eventExpedition: 'Etkinlik Kesfi',
+        expedition: 'Kesif Seferi',
+        highest: 'En Yuksek',
+        in: 'Icinde',
+        lastUsed: "Son Kullanilan",
+        location: 'Lokasyon',
+        lowest: 'En Dusuk',
+        nextAction: 'Siradaki aksiyon',
+        no: 'Hayir',
+        normal: 'Normal',
+        opponent: 'Dusman',
+        opponentLevel: 'Dusman Seviyesi',
+        quests: 'Gorev',
+        random: 'Rastgele',
+        settings: 'Ayarlar',
+        soon: 'Yakinda...',
+        type: 'Tip',
+        yes: 'Evet'
     }
 
     let content;
@@ -214,8 +214,8 @@
         case 'EN':
             content = { ...contentEN }
             break;
-        case 'PL':
-            content = { ...contentPL }
+        case 'TR':
+            content = { ...contentTR }
             break;
         default:
             content = { ...contentEN }
@@ -223,22 +223,22 @@
 
 
     /****************
-    *   Interface   *
+    *   Arayuz   *
     ****************/
 
-    // Set Auto Go Active
+    // Basla Ayaralamasi
     function setAutoGoActive() {
         sessionStorage.setItem('autoGoActive', true);
-        document.getElementById("autoGoButton").innerHTML = 'STOP'
+        document.getElementById("autoGoButton").innerHTML = 'DUR'
         document.getElementById("autoGoButton").removeEventListener ("click", setAutoGoActive);
         document.getElementById("autoGoButton").addEventListener ("click", setAutoGoInactive);
         autoGo();
     };
 
-    // Set Auto Go Inactive
+    // Durdur ayarlamasi
     function setAutoGoInactive() {
         sessionStorage.setItem('autoGoActive', false);
-        document.getElementById("autoGoButton").innerHTML = 'Auto GO'
+        document.getElementById("autoGoButton").innerHTML = 'Baslat'
         document.getElementById("autoGoButton").addEventListener ("click", setAutoGoActive);
         document.getElementById("autoGoButton").removeEventListener ("click", setAutoGoInactive);
 
@@ -253,7 +253,7 @@
         };
     };
 
-    // Open Settings
+    // Acma Secenekleri
     function openSettings(){
 
         function closeSettings() {
@@ -265,8 +265,8 @@
             settingsWindow.setAttribute("id", "settingsWindow")
             settingsWindow.innerHTML = `
                 <span id="settingsLanguage">
-                    <img id="languageEN" src="https://raw.githubusercontent.com/ebodziony/gladiatus-script/master/assets/GB.png">
-                    <img id="languagePL" src="https://raw.githubusercontent.com/ebodziony/gladiatus-script/master/assets/PL.png">
+                    <img id="languageTR" src="https://raw.githubusercontent.com/cansidee/gladiatus-script/master/assets/TR.png">
+                    <img id="languagePL" src="https://raw.githubusercontent.com/cansidee/gladiatus-script/master/assets/PL.png">
                 </span>
                 <span id="settingsHeader">${content.settings}</span>
                 <div id="settingsContent">
@@ -393,7 +393,7 @@
             overlayBack.addEventListener ("click", closeSettings);
         document.getElementsByTagName("body")[0].appendChild(overlayBack);
 
-        // Set Language
+        // Dil Secme
 
         function setLanguage(language) {
             localStorage.setItem('settings.language', language)
@@ -402,8 +402,8 @@
                 case 'EN':
                     content = { ...contentEN }
                     break;
-                case 'PL':
-                    content = { ...contentPL }
+                case 'TR':
+                    content = { ...contentTR }
                     break;
                 default:
                     content = { ...contentEN }
@@ -412,7 +412,7 @@
             reloadSettings();
         };
 
-        $("#languageEN").click(function() { setLanguage('EN') });
+        $("#languageTR").click(function() { setLanguage('TR') });
         $("#languagePL").click(function() { setLanguage('PL') });
 
         // Change Settings
@@ -559,7 +559,7 @@
 
             $('#quests_settings').addClass(doQuests ? 'active' : 'inactive');
             $(`#do_quests_${doQuests}`).addClass('active');
-            
+
             for (const type in questTypes) {
                 if (questTypes[type]) {
                     $(`#do_${type}_quests`).addClass('active');
@@ -581,16 +581,16 @@
     autoGoButton.className = 'menuitem';
 
     if (autoGoActive == false){
-        autoGoButton.innerHTML = 'Auto GO';
+        autoGoButton.innerHTML = 'Baslat';
         autoGoButton.addEventListener ("click", setAutoGoActive);
     } else {
-        autoGoButton.innerHTML = 'STOP';
+        autoGoButton.innerHTML = 'DUR';
         autoGoButton.addEventListener ("click", setAutoGoInactive);
     };
 
     document.getElementById("mainmenu").insertBefore(autoGoButton, document.getElementById("mainmenu").children[0]);
 
-    // Settings button
+    // Ayarlar Butonu
 
     var settingsButton = document.createElement("button");
     settingsButton.className = 'menuitem';
@@ -600,7 +600,7 @@
     document.getElementById("mainmenu").insertBefore(settingsButton, document.getElementById("mainmenu").children[1]);
 
     /****************
-    *    Helpers    *
+    *    Yardımcılar    *
     ****************/
 
     function getRandomInt(min, max) {
@@ -649,17 +649,17 @@
     };
 
     /****************
-    *    Auto Go    *
+    *    Baslat    *
     ****************/
 
     function autoGo() {
 
-        // Variables
+        // Degisken
 
         const currentTime = new Date().getTime();
         const clickDelay = getRandomInt(900, 2400);
 
-        // Claim Daily Reward
+        // Gunluk Bonusu topla
 
         if (document.getElementById("blackoutDialogLoginBonus") !== null) {
             setTimeout(function(){
@@ -667,7 +667,7 @@
             }, clickDelay);
         };
 
-        // Close Notifications
+        // Bildirimi kapa
 
         if (document.getElementById("blackoutDialognotification") !== null && document.getElementById("blackoutDialognotification").isDisplayed()) {
             setTimeout(function(){
@@ -676,7 +676,7 @@
         };
 
         /***************
-        *   Use Food   *
+        *   Yemek Kullan   *
         ***************/
 
         if (player.hp < 10) {
@@ -710,7 +710,7 @@
         }
 
         /****************
-        * Handle Quests *
+        * Gorevi Tamamla *
         ****************/
 
         else if (doQuests === true && nextQuestTime < currentTime) {
@@ -760,10 +760,10 @@
                         if (questTypes[icon]) {
                             return quest.getElementsByClassName("quest_slot_button_accept")[0].click();
                         };
-                    }           
+                    }
 
                     $("#quest_footer_reroll input").first().click()
-                }  
+                }
 
                 checkNextQuestTime();
             }
@@ -790,7 +790,7 @@
         }
 
         /****************
-        * Go Expedition *
+        * Kesife Git *
         ****************/
 
         else if (doExpedition === true && document.getElementById("cooldown_bar_fill_expedition").classList.contains("cooldown_bar_fill_ready") === true) {
@@ -800,7 +800,7 @@
 
                 if (!inExpeditionPage || inEventExpeditionPage) {
                     document.getElementsByClassName("cooldown_bar_link")[0].click();
-                } else { 
+                } else {
                     document.getElementsByClassName("expedition_button")[monsterId].click();
                 };
             };
@@ -812,7 +812,7 @@
         }
 
         /**************
-        * Go Dungeon  *
+        * Zindana git  *
         **************/
 
         else if (doDungeon === true && document.getElementById("cooldown_bar_fill_dungeon").classList.contains("cooldown_bar_fill_ready") === true) {
@@ -842,7 +842,7 @@
         }
 
         /************************
-        * Go Arena Provinciarum *
+        * Provinivarium Arenasına git *
         ************************/
 
         else if (doArena === true && document.getElementById("cooldown_bar_fill_arena").classList.contains("cooldown_bar_fill_ready") === true) {
@@ -858,7 +858,7 @@
 
                     if (!inArenaProvPage) {
                         document.getElementsByTagName("td")[1].firstElementChild.click();
-                    } else { 
+                    } else {
                         const levels = new Array();
                         levels[0] = Number(document.getElementById("own2").getElementsByTagName("td")[1].firstChild.nodeValue)
                         levels[1] = Number(document.getElementById("own2").getElementsByTagName("td")[5].firstChild.nodeValue)
@@ -875,7 +875,7 @@
                         } else {
                             opponentIndex = getRandomIntIndex(levels)
                         }
-                
+
                         document.getElementsByClassName("attack")[opponentIndex].click();
                     }
                 }
@@ -902,7 +902,7 @@
 
                     if (!inCircusProvPage) {
                         document.getElementsByTagName("td")[3].firstElementChild.click();
-                    } else { 
+                    } else {
                         const levels = new Array();
                         levels[0] = Number(document.getElementById("own3").getElementsByTagName("td")[1].firstChild.nodeValue)
                         levels[1] = Number(document.getElementById("own3").getElementsByTagName("td")[5].firstChild.nodeValue)
@@ -970,7 +970,7 @@
 
                         document.getElementsByClassName("expedition_button")[eventMonsterId].click();
                     }
-                }                
+                }
             };
 
             setTimeout(function(){
@@ -991,7 +991,7 @@
 
             if (safeMode === false) {
                 const actions = [];
-    
+
                 if (doExpedition === true) {
                     const timeTo = convertTimeToMs(document.getElementById("cooldown_bar_text_expedition").innerText);
 
@@ -1058,7 +1058,7 @@
                 const nextAction = getNextAction(actions);
 
                 // @TODO fix nextAction if !actions.length
-    
+
                 function formatTime(timeInMs) {
                     if (timeInMs < 1000) {
                         return "0:00:00"
@@ -1076,12 +1076,12 @@
                         mins = "0" + mins;
                     };
                     let hrs = (timeInSecs - mins) / 60;
-    
+
                     return hrs + ':' + mins + ':' + secs;
                 };
 
                 var nextActionWindow = document.createElement("div");
-    
+
                 function showNextActionWindow() {
                     nextActionWindow.setAttribute("id", "nextActionWindow")
                     nextActionWindow.setAttribute("style", `
@@ -1110,16 +1110,16 @@
                 showNextActionWindow();
 
                 let nextActionCounter;
-    
+
                 nextActionCounter = setInterval(function() {
                     nextAction.time = nextAction.time - 1000;
-    
+
                     nextActionWindow.innerHTML = `
                         <span style="color: #fff;">${content.nextAction}: </span>
                         <span>${content[nextAction.name]}</span></br>
                         <span style="color: #fff;">${content.in}: </span>
                         <span>${formatTime(nextAction.time)}</span>`;
-    
+
                     if (nextAction.time <= 0) {
                         if (nextAction.index === 4) {
                             document.getElementById("submenu2").getElementsByClassName("menuitem glow")[0].click();
