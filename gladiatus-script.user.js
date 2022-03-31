@@ -155,7 +155,7 @@
     *****************/
 
     const contentEN = {
-        advanced: 'Advanced',
+        advanced: 'İleri Düzey',
         arena: 'Arena',
         circusTurma: 'Sik Turna',
         difficulty: 'Zorluk',
