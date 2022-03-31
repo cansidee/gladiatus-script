@@ -157,7 +157,7 @@
     const contentEN = {
         advanced: 'İleri Düzey',
         arena: 'Arena',
-        circusTurma: 'Sik Turna',
+        circusTurma: 'Sirk Turna',
         difficulty: 'Zorluk',
         dungeon: 'Zindan',
         eventExpedition: 'Etkinlik Kesfi',
@@ -181,9 +181,9 @@
     }
    // Pl ceviri ama burayi tr gibi kullanicam
     const contentTR = {
-        advanced: 'Advanced',
+        advanced: 'İleri Düzey',
         arena: 'Arena',
-        circusTurma: 'Sik Turna',
+        circusTurma: 'Sirk Turna',
         difficulty: 'Zorluk',
         dungeon: 'Zindan',
         eventExpedition: 'Etkinlik Kesfi',

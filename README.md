@@ -1,5 +1,9 @@
 # Gladiatus Script
 
+* This script belongs to https://github.com/ebodziony. I just edited it into Turkish. 
+    
+      Türkçe Gladiatus scripti
+
 * Automatization for gladiatus:
   - Auto expedition
   - Auto dungeon
