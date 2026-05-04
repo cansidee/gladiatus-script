@@ -1,8 +1,8 @@
 # Gladiatus Script
 
-* This script belongs to https://github.com/ebodziony. I just edited it into Turkish. 
+* This script belongs to https://github.com/ebodziony. I just edited and make it better
     
-      Türkçe Gladiatus scripti
+      
 
 * Automatization for gladiatus:
   - Auto expedition
